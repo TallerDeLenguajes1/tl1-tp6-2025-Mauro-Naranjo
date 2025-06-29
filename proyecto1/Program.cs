@@ -121,3 +121,122 @@ else
     Console.WriteLine("No ingresó numeros válidos");
 }
 
+//ejercicio 4
+
+//Obtener la longitud de la cadena y muestre por pantalla
+Console.WriteLine("Ingrese una frase: ");
+string frase = Console.ReadLine();
+Console.WriteLine($"La longitud de la frase es: {frase.Length}");
+
+//A partir de una segunda cadena ingresada por el usuario, concatene ambas cadenas distintas
+Console.WriteLine("Ingrese otra frase para concatenar: ");
+string frase2 = Console.ReadLine();
+string concatenadas = string.Concat(frase, " ", frase2);
+Console.WriteLine($"Cadenas concatenadas : {concatenadas}");
+
+//Extraer una subcadena
+Console.WriteLine("Ingrese la posicion en la que desea extraer la subcadena: ", frase.Length - 1);
+string? posIni = Console.ReadLine();
+Console.WriteLine("Ingrese la cantidad de caracteres a extraer: ");
+string? cant = Console.ReadLine();
+if (int.TryParse(posIni, out int inicio) && int.TryParse(cant, out int cantidad))
+{
+    string subcadena = frase.Substring(inicio, cantidad);
+    Console.WriteLine($"Subcadena: {subcadena}");
+}
+
+//Suma y muestra por pantalla
+Console.WriteLine("Ingrese un numero: ");
+string? numero6 = Console.ReadLine();
+Console.WriteLine("Ingrese el segundo numero a sumar: ");
+string? numero7 = Console.ReadLine();
+if (double.TryParse(numero6, out double num6) && double.TryParse(numero7, out double num7))
+{
+    double suma = num6 + num7;
+    Console.WriteLine($"{num6} + {num7} = {suma}");
+}
+
+//Recorrer cadena de texto
+Console.WriteLine("Caracteres en la primer cadena: ");
+foreach (char c in frase)
+{
+    Console.WriteLine(c);
+}
+
+//Buscar la ocurrencia de una palabra
+Console.WriteLine("Caracteres en la primera cadena: ");
+string palabra = Console.ReadLine();
+bool contiene = frase.Contains(palabra);
+if (contiene)
+{
+    Console.WriteLine($"La palabra '{palabra}' está en la cadena");
+}
+else
+{
+    Console.WriteLine($"La palabra '{palabra}' no fue encontrada en la cadena");
+}
+
+//Convertir a mayusculas y luego a minusculas
+Console.WriteLine($"Convertida a mayusculas: {frase.ToUpper()}");
+Console.WriteLine($"Convertida a minusculas: {frase.ToLower()}");
+
+//cadena separada con caracteres que yo determino
+Console.Write("Ingrese una cadena separada por '-': ");
+string separada = Console.ReadLine();
+string[] partes = separada.Split('-');
+Console.WriteLine("Las partes de la cadena son: ");
+foreach (string parte in partes)
+{
+    Console.WriteLine(parte);
+}
+
+//Resolver una ecuacion simple
+Console.WriteLine("Ingrese una ecuacion simple como '582 + 2': ");
+string ecuacion = Console.ReadLine();
+
+char[] operadores = { '+', '-', '*', '/' };
+char operador = ' ';
+foreach (char ope in operadores)
+{
+    if (ecuacion.Contains(ope))
+    {
+        operador = ope;
+        break;
+    }
+}
+
+if (operador != ' ')
+{
+    string[] operandos = ecuacion.Split(operador);
+    if (operandos.Length == 2 && double.TryParse(operandos[0], out double ope1) && double.TryParse(operandos[1], out double ope2))
+    {
+        double total = 0;
+        switch (operador)
+        {
+            case '+':
+                total = ope1 + ope2;
+                break;
+            case '-':
+                total = ope1 - ope2;
+                break;
+            case '*':
+                total = ope1 * ope2;
+                break;
+            case '/':
+                if (ope2 != 0)
+                {
+                    total = ope1 / ope2;
+                }
+                else
+                {
+                    Console.WriteLine("No se puede dividir por 0");
+                }
+                break;
+
+        }
+        Console.WriteLine($"El total de {ecuacion} es: {resultado}");
+    }
+} else
+{
+    Console.WriteLine("La ecuacion no es valida");
+}
